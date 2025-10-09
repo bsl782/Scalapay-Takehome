@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+
+# Production builds
+/frontend/build
+/frontend/.next
+/backend/dist
+/backend/build
+build/
+dist/
+
+# Environment variables
+.env
+
+# Biome
+.biome-cache/
+
+# Turborepo
+.turbo
+
+# Sequelize CLI
+.sequelizerc
