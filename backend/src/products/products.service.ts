@@ -17,8 +17,12 @@ export class ProductsService {
     return this.productModel.create(data);
   }
 
-  async getAllProducts(offset = 0, limit = 10): Promise<Product[]> {
-    return this.productModel.findAll({ offset, limit });
+  async getAllProducts(offset = 0, limit = 10): Promise<{ products: Product[]; productCount: number }> {
+    const { rows, count } = await this.productModel.findAndCountAll({
+        offset,
+        limit 
+    });
+    return { products: rows, productCount: count };
   }
 
   async updateProductStockById(id: number, stock: number): Promise<Product> {
