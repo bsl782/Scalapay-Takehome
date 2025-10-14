@@ -17,14 +17,14 @@ export class ProductsService {
     return this.productModel.create(data);
   }
 
-  async getAllProducts(offset: number, limit: number): Promise<Product[]> {
+  async getAllProducts(offset = 0, limit = 10): Promise<Product[]> {
     return this.productModel.findAll({ offset, limit });
   }
 
   async updateProductStockById(id: number, stock: number): Promise<Product> {
     const product = await this.productModel.findByPk(id);
     if (!product) {
-      throw new NotFoundException("Product not found, cannot update stock");
+      throw new NotFoundException("Product not found");
     }
     product.stock = stock;
     return product.save();
@@ -33,7 +33,7 @@ export class ProductsService {
   async deleteProductById(id: number): Promise<void> {
     const product = await this.productModel.findByPk(id);
     if (!product) {
-      throw new NotFoundException("Product not found, cannot delete");
+      throw new NotFoundException("Product not found");
     }
     await product.destroy();
   }
