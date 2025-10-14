@@ -2,30 +2,50 @@
 https://docs.nestjs.com/controllers#controllers
 */
 
-import { Controller, Delete, Get, Post, Put } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from "@nestjs/common";
+import type { CreateProductDto } from "./dto/create-product.dto";
+import type { ListAllProductsDto } from "./dto/list-all-products-dto";
+import type { UpdateProductDto } from "./dto/update-product.dto";
 import type { ProductsService } from "./products.service";
 
-@Controller()
+@Controller("products")
 export class ProductsController {
-	constructor(private readonly productsService: ProductsService) {}
+  constructor(private productsService: ProductsService) {}
 
-	@Get()
-	readProducts(): string {
-		return "List of products";
-	}
+  //Create a product
+  @Post()
+  async createProduct(@Body() product: CreateProductDto) {
+    return this.productsService.createProduct(product);
+  }
 
-	@Post()
-	createProduct(): string {
-		return "Product created";
-	}
+  //Get all products with pagination
+  @Get()
+  async getAllProducts(@Query() query: ListAllProductsDto) {
+    return this.productsService.getAllProducts(query.offset, query.limit);
+  }
 
-	@Put()
-	updateProduct(): string {
-		return "Product updated";
-	}
+  //Update a product stock only (thus why PATCH usage)
+  @Patch()
+  async updateProduct(@Body() product: UpdateProductDto) {
+    return this.productsService.updateProductStockById(
+      product.id,
+      product.stock,
+    );
+  }
 
-	@Delete()
-	deleteProduct(): string {
-		return "Product deleted";
-	}
+  //Delete a product
+  @Delete(":id")
+  async deleteProduct(@Param("id") id: number) {
+    await this.productsService.deleteProductById(id);
+    return { message: "Product deleted" };
+  }
 }

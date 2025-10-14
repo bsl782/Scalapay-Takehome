@@ -1,9 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize";
-import { ProductsController } from "./products/products.controller";
 import { ProductsModule } from "./products/products.module";
-import { ProductsService } from "./products/products.service";
 
 @Module({
 	imports: [
@@ -25,7 +23,5 @@ import { ProductsService } from "./products/products.service";
 		// Import modules
 		ProductsModule,
 	],
-	controllers: [ProductsController],
-	providers: [ProductsService],
 })
 export class AppModule {}
