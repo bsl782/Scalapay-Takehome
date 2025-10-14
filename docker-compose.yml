@@ -1,13 +1,13 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: scalapay-takehome-mysql
+    container_name: scalapay-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: scalapay_takehome_db
-      MYSQL_USER: scalapay_takehome_user
-      MYSQL_PASSWORD: scalapay_takehome_password
+      MYSQL_DATABASE: ecommerce
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
