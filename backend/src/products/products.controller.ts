@@ -12,10 +12,11 @@ import {
   Post,
   Query,
 } from "@nestjs/common";
-import type { CreateProductDto } from "./dto/create-product.dto";
-import type { ListAllProductsDto } from "./dto/list-all-products-dto";
-import type { UpdateProductDto } from "./dto/update-product.dto";
-import type { ProductsService } from "./products.service";
+import { CreateProductDto } from "./dto/create-product.dto";
+import { DeleteProductDto } from "./dto/delete-product.dto";
+import { ListAllProductsDto } from "./dto/list-all-products-dto";
+import { UpdateProductDto } from "./dto/update-product.dto";
+import { ProductsService } from "./products.service";
 
 @Controller("products")
 export class ProductsController {
@@ -44,8 +45,8 @@ export class ProductsController {
 
   //Delete a product
   @Delete(":id")
-  async deleteProduct(@Param("id") id: number) {
-    await this.productsService.deleteProductById(id);
+  async deleteProduct(@Param() params: DeleteProductDto) {
+    await this.productsService.deleteProductById(params.id);
     return { message: "Product deleted" };
   }
 }
