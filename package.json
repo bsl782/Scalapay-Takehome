@@ -2,7 +2,6 @@
   "name": "scalapay-takehome",
   "version": "1.0.0",
   "private": true,
-
   "scripts": {
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run start:dev",
@@ -11,5 +10,8 @@
     "db:start": "docker-compose up",
     "db:stop": "docker-compose down",
     "db:status": "docker ps --filter name=scalapay-mysql"
+  },
+  "dependencies": {
+    "pnpm": "^10.18.3"
   }
 }
