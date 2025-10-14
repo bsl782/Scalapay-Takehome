@@ -1,11 +1,13 @@
-import { IsInt, Min } from "class-validator";
+import { IsInt, IsOptional, Min } from "class-validator";
 
 export class ListAllProductsDto {
   @IsInt({ message: "Offset must be an integer" })
   @Min(0, { message: "Offset must be be greater than or equal to 0" })
+  @IsOptional()
   offset: number;
 
   @IsInt({ message: "Limit must be an integer" })
-  @Min(1, { message: "Limit must be be greater than or equal to 1" })
+  @Min(0, { message: "Limit must be be greater than or equal to 0" })
+  @IsOptional()
   limit: number;
 }
