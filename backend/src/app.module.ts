@@ -6,9 +6,7 @@ import { ProductsModule } from "./products/products.module";
 @Module({
 	imports: [
 		// Load .env file
-		ConfigModule.forRoot({
-			envFilePath: "../.env",
-		}),
+		ConfigModule.forRoot(),
 		// Connect to database
 		SequelizeModule.forRoot({
 			dialect: "mysql",
