@@ -1,8 +1,8 @@
-/*
-https://docs.nestjs.com/providers#services
-*/
-
-import { Injectable, NotFoundException } from "@nestjs/common";
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Product } from "./interfaces/products.interface";
 
@@ -14,13 +14,24 @@ export class ProductsService {
   ) {}
 
   async createProduct(data: Partial<Product>): Promise<Product> {
+    const existingProduct = await this.productModel.findOne({
+      where: { productToken: data.productToken },
+    });
+    if (existingProduct) {
+      throw new InternalServerErrorException(
+        "Product with the same token already exists",
+      );
+    }
     return this.productModel.create(data);
   }
 
-  async getAllProducts(offset = 0, limit = 10): Promise<{ products: Product[]; productCount: number }> {
+  async getAllProducts(
+    offset = 0,
+    limit = 10,
+  ): Promise<{ products: Product[]; productCount: number }> {
     const { rows, count } = await this.productModel.findAndCountAll({
-        offset,
-        limit 
+      offset,
+      limit,
     });
     return { products: rows, productCount: count };
   }
