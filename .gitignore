@@ -10,7 +10,7 @@ build/
 dist/
 
 # Environment variables
-.env
+.env.local
 
 # Biome
 .biome-cache/
