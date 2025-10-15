@@ -61,3 +61,12 @@ scalapay-takehome/
    - **Frontend**: http://localhost:3000
    - **Backend API**: http://localhost:5000
    - **Database**: localhost:3306
+
+## Quick Navigation
+
+| Package | Purpose | README | Key Features |
+|---------|---------|---------|--------------|
+| **Frontend** | User Interface | [📖 Frontend README](frontend/README.md) | React 19, Tailwind CSS, Product Management UI |
+| **Backend** | API Server | [📖 Backend README](backend/README.md) | NestJS, MySQL, REST API, Validation |
+| **Shared** | Type Library | [📖 Shared README](shared/README.md) | TypeScript Types, DTOs, Validation Rules |
+
