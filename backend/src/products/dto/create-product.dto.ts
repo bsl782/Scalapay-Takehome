@@ -1,10 +1,4 @@
-import {
-  IsInt,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-  Min,
-} from "class-validator";
+import { IsInt, IsNotEmpty, IsNumber, IsString, Min } from "class-validator";
 
 export class CreateProductDto {
   @IsString({ message: "Product Token must be a string" })
