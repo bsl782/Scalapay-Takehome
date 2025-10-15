@@ -8,10 +8,6 @@ This package contains shared TypeScript interfaces, types, and Data Transfer Obj
 
 ### Core Types
 - `Product` - Main product entity interface
-- `ApiError` - Standard API error response format
-- `PaginatedResponse<T>` - Generic paginated response wrapper
-- `ApiResponse<T>` - Generic API response wrapper
-
 ### DTOs (with validation)
 - `CreateProductDto` - For creating new products
 - `UpdateProductDto` - For updating product stock
