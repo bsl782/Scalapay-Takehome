@@ -40,4 +40,5 @@ $ pnpm run test:cov
 
 ## Usage Examples
 
-For detailed API usage examples including sample requests and responses, see [USAGE_EXAMPLES.md](./USAGE_EXAMPLES.md).
+### Product API
+For detailed API usage examples including sample requests and responses, see [PRODUCT_USAGE_EXAMPLES.md](./PRODUCT_USAGE_EXAMPLES.md).
