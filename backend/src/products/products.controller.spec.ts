@@ -1,6 +1,8 @@
 import { Test, type TestingModule } from "@nestjs/testing";
-import type { CreateProductDto } from "./dto/create-product.dto";
-import type { ListAllProductsDto } from "./dto/list-all-products-dto";
+import {
+  CreateProductDto,
+  ListAllProductsDto,
+} from "@scalapay/shared";
 import type { Product } from "./interfaces/products.interface";
 import { ProductsController } from "./products.controller";
 import { ProductsService } from "./products.service";
@@ -122,7 +124,7 @@ describe("ProductsController", () => {
       const productId = 1;
       mockProductsService.deleteProductById.mockResolvedValue(undefined);
 
-      const result = await controller.deleteProduct({id: productId});
+      const result = await controller.deleteProduct({ id: productId });
 
       expect(service.deleteProductById).toHaveBeenCalledWith(productId);
       expect(result).toEqual({ message: "Product deleted" });
