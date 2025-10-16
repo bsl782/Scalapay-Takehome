@@ -64,9 +64,8 @@ scalapay-takehome/
 
 ## Quick Navigation
 
-| Package | Purpose | README | Key Features |
-|---------|---------|---------|--------------|
-| **Frontend** | User Interface | [📖 Frontend README](frontend/README.md) | React 19, Tailwind CSS, Product Management UI |
-| **Backend** | API Server | [📖 Backend README](backend/README.md) | NestJS, MySQL, REST API, Validation |
-| **Shared** | Type Library | [📖 Shared README](shared/README.md) | TypeScript Types, DTOs, Validation Rules |
-
+| Package |  | README |
+|---------|---------|---------|
+| **Frontend** | User Interface | [📖 Frontend README](frontend/README.md) 
+| **Backend** | API Server | [📖 Backend README](backend/README.md) 
+| **Shared** | Type Library | [📖 Shared README](shared/README.md)
