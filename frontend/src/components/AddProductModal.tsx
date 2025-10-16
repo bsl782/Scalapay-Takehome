@@ -22,7 +22,8 @@ export default function AddProductModal({ open, onClose, loading, onCreateProduc
     stock: 0,
   });
 
-  const handleSaving = () => {
+  const handleSaving = (e: React.FormEvent) => {
+    e.preventDefault();
     if (newProduct) {
       onCreateProduct({ ...newProduct } as Product);
       setNewProduct({
@@ -48,66 +49,67 @@ export default function AddProductModal({ open, onClose, loading, onCreateProduc
               transition
               className="relative transform overflow-hidden bg-white rounded-lg text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
             >
-              <div className=" px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <div className="sm:flex sm:items-start">
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left text-gray-700">
-                    <DialogTitle
-                      as="h3"
-                      className="text-base font-semibold "
-                    >
-                      Add New Product
-                    </DialogTitle>
-                    <div>
-                      <span className="flex flex-row items-center gap-2">
-                        <p className="text-sm mt-2">
-                          Product:
-                        </p>
-                        <input type="text" defaultValue={newProduct?.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="mt-2 border border-gray-300 rounded p-1" />
-                      </span>
-                      <span className="flex flex-row items-center gap-2">
-                        <p className="text-sm mt-2">
-                          Product Token:
-                        </p>
-                        <input type="text" defaultValue={newProduct?.productToken} onChange={(e) => setNewProduct({ ...newProduct, productToken: e.target.value })} className="mt-2 border border-gray-300 rounded p-1" />
-                      </span>
-                      <span className="flex flex-row items-center gap-2">
-                        <p className="text-sm mt-2">
-                          Price:
-                        </p>
-                        <input type="number" defaultValue={newProduct?.price} onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })} className="mt-2 border border-gray-300 rounded p-1" />
-                      </span>
-                      <span className="flex flex-row items-center gap-2">
-                        <p className="text-sm mt-2">
-                          Stock:
-                        </p>
-                        <input type="number" defaultValue={newProduct?.stock} onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })} className="mt-2 border border-gray-300 rounded p-1" />
-                      </span>
+              <form onSubmit={handleSaving} >
+                <div className=" px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+                    <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left text-gray-700">
+                      <DialogTitle
+                        as="h3"
+                        className="text-base font-semibold "
+                      >
+                        Add New Product
+                      </DialogTitle>
+                      <div>
+                        <span className="flex flex-row items-center gap-2">
+                          <label className="text-sm mt-2">
+                            Product Name:
+                            <input name="name-input" type="text" defaultValue={newProduct?.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="mt-2 ml-1 border border-gray-300 rounded p-1" />
+                          </label>
+                        </span>
+                        <span className="flex flex-row items-center gap-2">
+                          <label className="text-sm mt-2">
+                            Product Token:
+                            <input type="text" defaultValue={newProduct?.productToken} onChange={(e) => setNewProduct({ ...newProduct, productToken: e.target.value })} className="mt-2 ml-1 border border-gray-300 rounded p-1" />
+                          </label>
+                        </span>
+                        <span className="flex flex-row items-center gap-2">
+                          <label className="text-sm mt-2">
+                            Price:                           
+                            <input type="number" defaultValue={newProduct?.price} onChange={(e) => setNewProduct({ ...newProduct, price: Number(e.target.value) })} className="mt-2 ml-1 border border-gray-300 rounded p-1" />
+                          </label>
+                        </span>
+                        <span className="flex flex-row items-center gap-2">
+                          <label className="text-sm mt-2">
+                            Stock:                          
+                            <input type="number" defaultValue={newProduct?.stock} onChange={(e) => setNewProduct({ ...newProduct, stock: Number(e.target.value) })} className="mt-2  ml-1 border border-gray-300 rounded p-1" />
+                          </label>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className=" px-4 py-3 sm:flex sm:flex-row-reverse">
-                <button
-                  type="button"
-                  onClick={() => handleSaving()}
-                  disabled={loading}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  data-autofocus
-                  onClick={() => onClose(false)}
-                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer mr-2"
-                >
-                  Cancel
-                </button>
-              </div>
+                <div className=" px-4 py-3 sm:flex sm:flex-row-reverse">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    data-autofocus
+                    onClick={() => onClose(false)}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer mr-2"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
             </DialogPanel>
           </div>
         </div>
-      </Dialog>
-    </div>
+      </Dialog >
+    </div >
   );
 }
